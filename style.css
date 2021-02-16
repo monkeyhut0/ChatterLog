@@ -1,0 +1,202 @@
+body {
+    background-color: #1f1f1f;
+    color: white;
+    font-family: Inter, Roobert, "Helvetica Neue", Arial, sans-serif;
+    margin-left: 20px;
+    margin-right: 20px;
+    min-width: 494px;
+    text-shadow: 0 0 1px #000, 0 0 2px #000;
+}
+
+body::-webkit-scrollbar {
+    width: 6px;
+	background-color: #1f1f1f;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+#table {
+    display: grid;
+    grid-row-gap: 5px;
+    font-size: large;
+}
+
+.list {
+    border: 1px solid white;
+    border-radius: 7px;
+    padding: 4px;
+    display: grid;
+    grid-template-columns: 31px 164px auto 85px;
+    min-height: 28px
+}
+
+.list:hover{
+    background: rgb(20,20,20);
+}
+
+.sent_msgs {
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-container {
+    margin-left: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.message {
+    -webkit-text-stroke: 0.2px black;
+    margin-left: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.emote {
+    margin-right: 0.3em;
+}
+
+.message-part{
+    color: white;
+    margin-right: 0.3em;
+}
+
+.time-container {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.timestamp {
+    color: #adadb8;
+}
+
+.history {
+    grid-column: 3;
+    font-size: small;
+    max-width: 100%;
+    overflow-y: auto;
+    margin-left: 15px;
+    transition: max-height 0.2s ease-out;
+    max-height: 0em;
+}
+
+ .history .row {
+    display: grid;
+    grid-template-columns: 60px auto;
+    border: none;
+    padding: 0px;
+    min-height: 0px;
+    min-width: 0px;
+}
+
+.history::-webkit-scrollbar {
+    width: 2px;
+}
+
+.history::-webkit-scrollbar-thumb {
+    background-color: #1f1f1f;
+    outline: 1px solid #c3c3c3;
+}
+
+ .history .emote {
+    height: 1em;
+}
+
+.welcome {
+    font-size: 36px;
+    background-image: linear-gradient(to right, red, orange, 
+                      yellow, green, rgb(97, 97, 255), #AA33FF, violet);
+    color: transparent;
+    -webkit-background-clip: text;
+    text-shadow: none;
+}
+
+.update_animation {
+    animation-name: update;
+    animation-duration: 3s;
+}
+
+@keyframes update {
+    from {
+        background-color: #404040;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+.init_animation {
+    animation-name: bg !important;
+    animation-duration: 3s;
+}
+
+@keyframes bg {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+#header {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: max-content auto auto;
+    align-items: flex-end;
+}
+
+.totals {
+    font-weight: bold;
+    align-content: flex-end;
+    margin-bottom: 5px
+}
+
+#total_msgs {
+    text-align: right;
+}
+
+#input {
+    position: sticky;
+    background: rgb(59, 59, 59);
+    padding: 2px 0px 2px 2px;
+    margin-bottom: 5px;
+    align-content: center;
+    top: 0px;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    border: none;
+}
+
+@keyframes changeColor {
+    0% {color: white;}
+    12.5% {color: red;}
+    25% {color: orange;}
+    37.5% {color: yellow;}
+    50% {color: green;}
+    62.5% {color: rgb(97, 97, 255)}
+    75% {color: #AA33FF}
+    87.5% {color: violet;}
+    100% {color: white;}
+}

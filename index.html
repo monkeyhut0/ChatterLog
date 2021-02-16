@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="header">
+        <span class="welcome">Welcome Chatters!</span>
+        <span id="total_chat" class="totals">Total Chatters: 0</span>
+        <span id="total_msgs" class="totals">Total Messages: 0</span>
+    </div>
+    <input id="input" type="text" autocomplete="off" placeholder="Filter..."/>
+    <div id="table"></div>
+
+
+    <!-- user init box template -->
+    <template id="user_init_box">
+        <div id="${username}" class="list init_animation" style="color: ${color}">
+            <span id="${username}_num" class="sent_msgs">1</span>
+            <div id="${username}_name" class="name-container">
+                <span class="name">${display}</span>
+            </div>
+            <div id="${username}_msg" class="message">
+            </div>
+            <div id="${username}_time" class="time-container">
+                <span class="timestamp">${time}</span>
+            </div>
+            <div id="${username}_history" class="history"></div>
+        </div>
+    </template>
+    <!-- history line template -->
+    <template id="history_line">
+        <div class="row">
+            <span class="timestamp"></span>
+            <div class="message"></div>
+        </div>
+    </template>
+
+    <script src="scripts/tmi.min.js"></script>
+    <script src="scripts/init.js"></script>
+    <script src="scripts/message.js"></script>
+    <script src="scripts/colors.js"></script>
+    <script src="scripts/page.js"></script>
+    <script src="scripts/test.js"></script>
+</body>
+</html>

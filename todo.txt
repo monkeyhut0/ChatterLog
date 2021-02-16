@@ -1,0 +1,13 @@
+﻿✔emotes
+✔totals at top
+✔icon
+✔bttv emotes
+✔!unlurk
+afk detection
+options menu
+easier updating
+save/load
+badge check (mod, vip, sub)
+bold mentions
+hover over time
+hover over number
