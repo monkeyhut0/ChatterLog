@@ -1,4 +1,3 @@
-//Timothy Arsenault
 //includes a bunch of consts and settings
 
 let CHANNEL = 'waterdance',

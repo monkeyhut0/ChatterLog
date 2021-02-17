@@ -188,15 +188,3 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     border: none;
 }
-
-@keyframes changeColor {
-    0% {color: white;}
-    12.5% {color: red;}
-    25% {color: orange;}
-    37.5% {color: yellow;}
-    50% {color: green;}
-    62.5% {color: rgb(97, 97, 255)}
-    75% {color: #AA33FF}
-    87.5% {color: violet;}
-    100% {color: white;}
-}

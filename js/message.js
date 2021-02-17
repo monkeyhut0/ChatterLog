@@ -1,5 +1,3 @@
-// Timothy Arsenault
-
 /*
 * Takes where the emotes are, and returns an array of sorted Emote objects.
 * 

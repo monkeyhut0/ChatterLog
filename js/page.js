@@ -1,5 +1,3 @@
-//Timothy Arsenault
-
 const client = new tmi.Client({
     options: { debug: true, messagesLogLevel: "info" },
     connection: {

@@ -1,5 +1,3 @@
-// Timothy Arsenault
-
 function getColor(hex) {
     if (!hex) {
         return '#FFFFFF'; //white
