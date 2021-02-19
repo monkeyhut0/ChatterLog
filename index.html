@@ -4,14 +4,17 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="header">
-        <span class="welcome">Welcome Chatters!</span>
-        <span id="total_chat" class="totals">Total Chatters: 0</span>
-        <span id="total_msgs" class="totals">Total Messages: 0</span>
+    <div id="page">
+        <div id="content">
+            <div id="header">
+                <span class="welcome">Welcome Chatters!</span>
+                <span id="total_chat" class="totals">Total Chatters: 0</span>
+                <span id="total_msgs" class="totals">Total Messages: 0</span>
+            </div>
+            <input id="input" type="text" autocomplete="off" placeholder="Filter..."/>
+            <div id="table"></div>
+        </div>
     </div>
-    <input id="input" type="text" autocomplete="off" placeholder="Filter..."/>
-    <div id="table"></div>
-
 
     <!-- user init box template -->
     <template id="user_init_box">
@@ -41,6 +44,13 @@
     <script src="js/message.js"></script>
     <script src="js/colors.js"></script>
     <script src="js/page.js"></script>
-    <script src="js/test.js"></script>
+    <script>
+        //Title bar
+        const customTitlebar = require('custom-electron-titlebar');
+        new customTitlebar.Titlebar({
+            backgroundColor: customTitlebar.Color.fromHex('#428baf'),
+            unfocusEffect: false
+        });
+    </script>
 </body>
 </html>

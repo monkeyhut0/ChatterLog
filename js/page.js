@@ -145,7 +145,7 @@ async function handleMessage(message, tags) {
     //check to see if they're already in the list
     if (chatters.length > 0) {
         for (var i = 0; i < chatters.length; i++) {
-            if (username == chatters[i].username) {
+            if (username === chatters[i].username) {
                 //they are on the list
                 let container = document.getElementById(username + '_msg'),
                     timestamp = document.getElementById(username + '_time').querySelector('span');
@@ -191,7 +191,7 @@ async function handleMessage(message, tags) {
                 timestamp.textContent = time;
 
                 //check to see if color changed
-                if ((color != chatters[i].color) && (chatters[i].color)) {
+                if ((color !== chatters[i].color) && (chatters[i].color)) {
                     //new color
                     var temp = getColor(color);
                     chatters[i].color = temp;
@@ -240,7 +240,7 @@ async function handleMessage(message, tags) {
     //add list click
     document.getElementById(username).addEventListener("click", () => {
         let ele = document.getElementById(username + '_history'),
-            user = chatters.find(element => element.username == username);
+            user = chatters.find(element => element.username === username);
 
         //toggle
         if (ele.style.maxHeight) {
@@ -254,8 +254,10 @@ async function handleMessage(message, tags) {
     });
 
     //add name click
-    document.getElementById(username + '_name').querySelector('span').addEventListener("click", (event) => {
-        window.open("https://www.twitch.tv/popout/waterdance/viewercard/" + username);
+    document.getElementById(username + '_name').querySelector('span')
+        .addEventListener("click", (event) => {
+        require('electron').shell.openExternal(
+            "https://www.twitch.tv/popout/waterdance/viewercard/" + username);
         event.stopPropagation();
     });
 
@@ -277,7 +279,7 @@ async function handleMessage(message, tags) {
         //just use raw message
         let frag = document.createElement("span");
         frag.classList.add('message-part');
-        frag.appendChild(document.createTextNode(message))
+        frag.appendChild(document.createTextNode(message));
         document.getElementById(username + '_msg').append(frag);
     }
 
@@ -311,7 +313,7 @@ function convertDate(time) {
 function isIgnored(name) {
     //check to see if name is in ignore list
     for (var i = 0; i < IGNORE_LIST.length; i++) {
-        if (IGNORE_LIST[i] == name)
+        if (IGNORE_LIST[i] === name)
             return true; //found
     }
     return false; //not found

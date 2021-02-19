@@ -1,5 +1,5 @@
-const { app, BrowserWindow } = require('electron');
-const contextMenu = require('electron-context-menu');
+const { app, BrowserWindow, Menu } = require('electron');
+const { save, load, expand, collapse } = require('./js/menu.js');
 
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
@@ -25,7 +25,7 @@ function handleSquirrelEvent() {
 
         try {
             spawnedProcess = ChildProcess.spawn(command, args, { detached: true });
-        } catch (error) { }
+        } catch (error) { console.error(error); }
 
         return spawnedProcess;
     };
@@ -67,53 +67,69 @@ function handleSquirrelEvent() {
             app.quit();
             return true;
     }
-};
-
-contextMenu({
-    prepend: (defaultActions, params, browserWindow) => [
-        {
-            label: 'Copy',
-            // Only show it when right-clicking images
-            visible: params.mediaType === 'image'
-        },
-        {
-            label: 'Favorite',
-            // Only show it when right-clicking text
-            visible: params.selectionText.trim().length > 0,
-            click: () => {
-                //add to favorite
-            }
-        }
-    ]
-});
+}
 
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         },
+        titleBarStyle: "hidden",
+        frame: false,
         AutoHideMenuBar: true
-    })
-    win.setMenuBarVisibility(false);
-    win.webContents.on('new-window', function (e, url) {
-        e.preventDefault();
-        require('electron').shell.openExternal(url);
     });
-    win.loadFile('index.html')
+    win.loadFile('index.html');
+
+    //dev tools to debug
+    win.webContents.openDevTools({ mode: 'undocked' });
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(()=>{
+    createWindow();
+
+    //Menu
+    const menu = Menu.buildFromTemplate([
+        {
+            label: 'File',
+            submenu: [
+                {
+                    label: 'Save',
+                    click: save
+                },
+                {
+                    label: 'Load',
+                    click: load
+                }
+            ]
+        },
+        {
+            label: 'History',
+            submenu: [
+                {
+                    label: 'Expand All',
+                    click: expand
+                },
+                {
+                    label: 'Collapse All',
+                    click: collapse
+                }
+            ]
+        }
+    ]);
+    Menu.setApplicationMenu(menu);
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
-})
+});
 
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow()
     }
-})
+});

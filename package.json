@@ -6,13 +6,13 @@
         "icon": "app.ico",
         "name": "ChatterLog",
         "ignore": [
-			"todo.txt", 
-			"/.vs/", 
-			"/obj/", 
-			"ChatterLog.sln", 
-			"ChatterLog.njsproj"
-			]
-	  },
+          "todo.txt",
+          "/.vs/",
+          "/obj/",
+          "ChatterLog.sln",
+          "ChatterLog.njsproj"
+        ]
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -36,6 +36,7 @@
     "concat-stream": "^1.6.2",
     "config-chain": "^1.1.12",
     "core-js": "^3.8.1",
+    "custom-electron-titlebar": "^3.2.6",
     "debug": "^4.3.1",
     "decompress-response": "^3.3.0",
     "defer-to-connect": "^1.1.3",

@@ -1,21 +1,33 @@
 body {
     background-color: #1f1f1f;
     color: white;
-    font-family: Inter, Roobert, "Helvetica Neue", Arial, sans-serif;
-    margin-left: 20px;
-    margin-right: 20px;
+    font-family: Inter, Roobert, "Helvetica Neue", Arial, sans-serif !important;
     min-width: 494px;
     text-shadow: 0 0 1px #000, 0 0 2px #000;
 }
 
-body::-webkit-scrollbar {
+#page{
+    height: 100%;
+    overflow: auto;
+}
+
+#page::-webkit-scrollbar {
     width: 6px;
 	background-color: #1f1f1f;
 }
 
-body::-webkit-scrollbar-thumb {
-    background-color: #ffffff;
-    border-radius: 10px;
+#page::-webkit-scrollbar-thumb {
+    background-color: #af6642;
+    border-radius: 10px 0 0 10px;
+}
+
+#content {
+    margin: 0 20px;
+}
+
+.container-after-titlebar {
+    border: #428baf solid 5px;
+    border-top: 0;
 }
 
 #table {

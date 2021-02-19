@@ -3,10 +3,9 @@
 ✔icon
 ✔bttv emotes
 ✔!unlurk
-afk detection
+*easier updating
+*save/load
 options menu
-easier updating
-save/load
 badge check (mod, vip, sub)
 bold mentions
 hover over time

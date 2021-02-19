@@ -26,19 +26,19 @@
     <Content Include="style.css" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
-    <Content Include="scripts\buttons.js" />
-    <Content Include="scripts\colors.js" />
-    <Content Include="scripts\message.js" />
     <Content Include="main.js" />
-    <Content Include="scripts\page.js" />
-    <Content Include="scripts\tmi.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="scripts\" />
+    <Folder Include="js\" />
+    <Folder Include="archive\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="scripts\init.js" />
-    <Compile Include="scripts\test.js" />
+    <Compile Include="js\colors.js" />
+    <Compile Include="js\init.js" />
+    <Compile Include="js\menu.js" />
+    <Compile Include="js\message.js" />
+    <Compile Include="js\page.js" />
+    <Compile Include="js\tmi.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
