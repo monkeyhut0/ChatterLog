@@ -49,7 +49,7 @@ async function getMessageHTML(message, emote_set) {
     emotes = parseTwitchEmotes(message, emote_set);
     //check
     if (!emotes) {
-        console.error('Error getting emotes')
+        console.error('Error getting emotes');
         return null;
     }
 
@@ -61,7 +61,15 @@ async function getMessageHTML(message, emote_set) {
         console.error('Could not get bttv emotes.');
     }
 
-    if (emotes.length == 0) { //no emotes in message
+    //get ffz emotes
+    try {
+        emotes = new Map([...emotes].concat([...await FFZ_EMOTES]));
+
+    } catch (err) {
+        console.error('Could not get ffz emotes.');
+    }
+
+    if (emotes.length === 0) { //no emotes in message
         html.push(stringToHTML(message));
         return html;
     }

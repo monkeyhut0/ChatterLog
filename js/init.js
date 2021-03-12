@@ -5,7 +5,8 @@ let CHANNEL = 'waterdance',
     IGNORE_LIST = ['mogballbot', 'waterdance'],
     BTTV_EMOTES = CHANNEL_ID.then((id) => {
         return getBttvEmotes(id);
-    });
+    }),
+    FFZ_EMOTES = getFfzEmotes(CHANNEL);
 
 /* Takes a Twitch channel name and get's it's ID in the form of a promise.
  * Uses the decapi.me api.
@@ -40,7 +41,7 @@ async function getChannelID(channel) {
  * return: a promise of an array of bttv emote id's and nicks
  * */
 async function getBttvEmotes(id) {
-    var emotes = new Map()
+    var emotes = new Map();
 
     console.log('Getting BTTV Global...');
     //use api to get global emotes
@@ -82,7 +83,7 @@ async function getBttvEmotes(id) {
             });
         });
 
-    console.log('Success! Got BTTV emotes!')
+    console.log('Success! Got BTTV emotes!');
     return emotes;
 }
 
@@ -94,4 +95,68 @@ async function getBttvEmotes(id) {
  * */
 function getBttvEmoteUrl(id) {
     return `https://cdn.betterttv.net/emote/${id}/1x`;
+}
+
+/* Takes a Twitch channel id and get's the global and channel FFZ emotes in the form of a promise.
+ * Uses the FFZ api.
+ * 
+ * (user): username of the channel
+ * 
+ * return: a promise of an array of ffz emote id's and nicks
+ * */
+async function getFfzEmotes(user) {
+    var emotes = new Map();
+
+    console.log('Getting FFZ Global...');
+    //use api to get global emotes
+    fetch('https://api.frankerfacez.com/v1/set/global')
+        .then((response) => {
+            if (response.status !== 200) {
+                //request to get global emotes failed
+                console.log(`Could not get FFZ Global Emotes. Status Code: ${response.status}`);
+            }
+
+            return response.json().then((data) => {
+                //parse json
+				for(let list in data.sets){
+					//loop through emote array
+					for (let mote of data.sets[list].emoticons) {
+						emotes.set(mote.name, getFfzEmoteUrl(mote.urls["1"]));
+					}
+				}
+            });
+        });
+
+    console.log('Getting FFZ Channel...');
+    //use api to get channel emotes
+    fetch(`https://api.frankerfacez.com/v1/room/${user}`)
+        .then((response) => {
+            if (response.status !== 200) {
+                //request to get channel emotes failed
+                console.log(`Could not get FFZ Channel Emotes. Status Code: ${response.status}`);
+            }
+
+            return response.json().then((data) => {
+                //parse json
+				for(let list in data.sets){
+					//loop through emote array
+					for (let mote of data.sets[list].emoticons) {
+						emotes.set(mote.name, getFfzEmoteUrl(mote.urls["1"]));
+					}
+				}
+            });
+        });
+
+    console.log('Success! Got FFZ emotes!');
+    return emotes;
+}
+
+/* Gives a new emote url for FFZ emotes.
+ * 
+ * (end): end of the url
+ * 
+ * return: a working url of ffz emote
+ * */
+function getFfzEmoteUrl(end) {
+    return `https:${end}`;
 }
